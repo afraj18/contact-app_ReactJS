@@ -35,7 +35,7 @@ class AddContact extends React.Component {
                     <div>
                         <label> E-Mail </label>
                         <input
-                            type="text"
+                            type="email"
                             name="email"
                             placeholder="Email"
                             value={this.state.email}

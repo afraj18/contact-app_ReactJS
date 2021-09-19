@@ -1,42 +1,34 @@
-
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import './App.css';
-import Header from './Header';
-import AddContact from './AddContact';
-import ContactList from './ContactList';
-import { uuid } from 'uuidv4';
+import HomePage from './HomePage';
+import SignUp from './SignUp';
+import { Container } from 'react-bootstrap';
+import { AuthProvider } from '../context/AuthContext';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import DashBoard from './DashBoard';
+import Login from './Login';
 
 function App() {
-  const [contacts, setContacts] = useState([]);
-  const LOCAL_STORAGE_KEY = "contacts";
+    return (
 
-  const addContactHandler = (contact) => {
-    // console.log(contacts);
-    setContacts([...contacts, { id: uuid(), ...contact }]);
-  }
+        <Container className="d-flex justify-content-center align-items-center" style={{ minHeight: "100vh" }} >
+            <div className="w-100" style={{ maxWidth: "400px" }}>
+                <Router>
+                    <AuthProvider>
+                        <Switch>
+                            <Route exact path="/" component={Login} />
+                            <Route path="/signup" component={SignUp} />
+                            <Route path="/login" component={Login} />
+                            <Route path="/DashBoard" component={DashBoard} />
 
-  useEffect(() => {
-    const retrContacts = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
-    if (retrContacts) setContacts(retrContacts);
-  }, []);
 
-  useEffect(() => {
-    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(contacts))
-  }, [contacts]);
+                        </Switch>
+                    </AuthProvider>
+                </Router>
+            </div>
+        </Container>
 
-  const removeContactHandler = (id) => {
-    const newContactList = contacts.filter((contact) => {
-      return contact.id !== id;
-    });
-    setContacts(newContactList);
-  }
-  return (
-    <div className="ui container">
-      <Header />
-      <AddContact addContactHandler={addContactHandler} />
-      <ContactList contacts={contacts} getContactId={removeContactHandler} />
-    </div>
-  );
+    );
 }
 
 export default App;
