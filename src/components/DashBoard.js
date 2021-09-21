@@ -3,7 +3,7 @@ import HomePage from './HomePage'
 import { Card, Button, Alert } from 'react-bootstrap'
 import { useAuth } from '../context/AuthContext';
 import { Link, useHistory } from 'react-router-dom';
-import UpdateProfile from './UpdateProfile';
+
 
 export default function DashBoard() {
     const [error, setError] = useState();
