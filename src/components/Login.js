@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import { Card, Form, Button, Alert } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
-import { signup, useAuth } from '../context/AuthContext';
+import { useAuth } from '../context/AuthContext';
 
 export default function Login() {
     const emailRef = useRef();
@@ -29,32 +29,35 @@ export default function Login() {
 
     return (
         <>
-            <Card>
-                <Card.Body>
-                    <h2 className="text-center mb-4">
-                        Log In
-                    </h2>
-                    {/* {currentUser.email} */}
-                    {error && <Alert variant="danger">{error}</Alert>}
-                    <Form onSubmit={HandleSubmit}>
-                        <Form.Group id="email">
-                            <Form.Label> E-Mail </Form.Label>
-                            <Form.Control type="email" ref={emailRef} required />
-                        </Form.Group>
-                        <Form.Group id="password">
-                            <Form.Label> Password </Form.Label>
-                            <Form.Control type="password" ref={passwordRef} required />
-                        </Form.Group>
-                        <Button className="w-100 mt-4" disabled={loading} type="submit">Log In</Button>
-                    </Form>
-                    <div className="w-100 text-center mt-3">
-                        <Link to="/ForgotPassword">Forgot Password?</Link>
-                    </div>
-                </Card.Body>
-            </Card>
-            <div className="w-100 text-center mt-2">
-                Don't have an account? <Link to="/SignUp">Sign Up</Link>
+            <div className="w-100" style={{ maxWidth: "400px" }}>
+                <Card>
+                    <Card.Body>
+                        <h2 className="text-center mb-4">
+                            Log In
+                        </h2>
+                        {/* {currentUser.email} */}
+                        {error && <Alert variant="danger">{error}</Alert>}
+                        <Form onSubmit={HandleSubmit}>
+                            <Form.Group id="email">
+                                <Form.Label> E-Mail </Form.Label>
+                                <Form.Control type="email" ref={emailRef} required />
+                            </Form.Group>
+                            <Form.Group id="password">
+                                <Form.Label> Password </Form.Label>
+                                <Form.Control type="password" ref={passwordRef} required />
+                            </Form.Group>
+                            <Button className="w-100 mt-4" disabled={loading} type="submit">Log In</Button>
+                        </Form>
+                        <div className="w-100 text-center mt-3">
+                            <Link to="/ForgotPassword">Forgot Password?</Link>
+                        </div>
+                    </Card.Body>
+                </Card>
+                <div className="w-100 text-center mt-2">
+                    Don't have an account? <Link to="/SignUp">Sign Up</Link>
+                </div>
             </div>
+
         </>
     )
 }

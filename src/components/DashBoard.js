@@ -5,6 +5,7 @@ import { useAuth } from '../context/AuthContext';
 import { Link, useHistory } from 'react-router-dom';
 
 
+
 export default function DashBoard() {
     const [error, setError] = useState();
     const { currentUser, Logout } = useAuth();
@@ -16,7 +17,7 @@ export default function DashBoard() {
         history.push('/Login')
     }
     return (
-        <div>
+        <div className="w-100 mt-5" style={{ maxWidth: "900px" }}>
             <Card>
                 <Card.Body className="text-center">
                     <h2 className="text-center mb-4">Profile</h2>
@@ -32,6 +33,7 @@ export default function DashBoard() {
             </div>
             {/* //ContactApp */}
             <HomePage />
+
         </div>
     )
 }

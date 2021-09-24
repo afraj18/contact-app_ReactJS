@@ -22,7 +22,7 @@ export default function UpdateProfile() {
         setError('')
         setLoading(true)
 
-        if (emailRef.current.value != currentUser.email) {
+        if (emailRef.current.value !== currentUser.email) {
             promises.push(updateEmail(emailRef.current.value))
         }
         if (passwordRef.current.value) {
@@ -40,34 +40,37 @@ export default function UpdateProfile() {
 
     return (
         <>
-            <Card>
-                <Card.Body>
-                    <h2 className="text-center mb-4">
-                        Update Profile
-                    </h2>
-                    {/* {currentUser.email} */}
-                    {error && <Alert variant="danger">{error}</Alert>}
-                    <Form onSubmit={HandleSubmit}>
-                        <Form.Group id="email">
-                            <Form.Label> E-Mail </Form.Label>
-                            <Form.Control type="email" ref={emailRef} required defaultValue={currentUser.email} />
-                        </Form.Group>
-                        <Form.Group id="password">
-                            <Form.Label> Password </Form.Label>
-                            <Form.Control type="password" ref={passwordRef} placeholder="Leave Blank to keep same" />
-                        </Form.Group>
-                        <Form.Group id="password-confirm">
-                            <Form.Label> Confirm Password </Form.Label>
-                            <Form.Control type="password" ref={passwordConfirmRef} placeholder="Leave Blank to keep same" />
-                        </Form.Group>
-                        <Button className="w-100 mt-4" disabled={loading} type="submit">Update</Button>
+            <div className="w-100 mt-5" style={{ maxWidth: "400px" }}>
+                <Card>
+                    <Card.Body>
+                        <h2 className="text-center mb-4">
+                            Update Profile
+                        </h2>
+                        {/* {currentUser.email} */}
+                        {error && <Alert variant="danger">{error}</Alert>}
+                        <Form onSubmit={HandleSubmit}>
+                            <Form.Group id="email">
+                                <Form.Label> E-Mail </Form.Label>
+                                <Form.Control type="email" ref={emailRef} required defaultValue={currentUser.email} />
+                            </Form.Group>
+                            <Form.Group id="password">
+                                <Form.Label> Password </Form.Label>
+                                <Form.Control type="password" ref={passwordRef} placeholder="Leave Blank to keep same" />
+                            </Form.Group>
+                            <Form.Group id="password-confirm">
+                                <Form.Label> Confirm Password </Form.Label>
+                                <Form.Control type="password" ref={passwordConfirmRef} placeholder="Leave Blank to keep same" />
+                            </Form.Group>
+                            <Button className="w-100 mt-4" disabled={loading} type="submit">Update</Button>
 
-                    </Form>
-                </Card.Body>
-            </Card>
-            <div className="w-100 text-center mt-2">
-                <Link to="/">Cancel</Link>
+                        </Form>
+                    </Card.Body>
+                </Card>
+                <div className="w-100 text-center mt-2">
+                    <Link to="/">Cancel</Link>
+                </div>
             </div>
+
         </>
     )
 }

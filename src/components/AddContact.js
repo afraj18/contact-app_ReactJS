@@ -1,6 +1,8 @@
 
 import React from 'react';
 
+
+
 class AddContact extends React.Component {
     state = {
         name: "",
@@ -8,11 +10,14 @@ class AddContact extends React.Component {
     }
     add = (e) => {
         e.preventDefault();
+
         if (this.state.name === "" || this.state.email === "") {
             alert("All the fields are mendotary!");
             return;
         }
         this.props.addContactHandler(this.state);
+
+
         // console.log(this.state);
         this.setState({ name: "", email: "" });
     }
