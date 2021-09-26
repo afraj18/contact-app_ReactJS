@@ -13,7 +13,7 @@ const FirebaseCrud = () => {
     const [ulname, setUlname] = useState("");
     const [userId, setUserId] = useState('');
     const [userData, setUserData] = useState([]);
-
+    // Get data from FireDB - R
     useEffect(() => {
         const firestore = firebase.database().ref('/userInfo');
         firestore.on('value', (response) => {
@@ -29,7 +29,7 @@ const FirebaseCrud = () => {
             setUserData(userInfo);
         })
     }, [])
-
+    //Add data to fireDB - C
     const handleUser = () => {
 
         const firestore = firebase.database().ref('/userInfo');
@@ -52,7 +52,7 @@ const FirebaseCrud = () => {
 
 
     }
-
+    // Update Details on FireDB - U
     const handleUpdateUser = () => {
         // alert("function not finalized  ")
         const firestore = firebase.database().ref("/userInfo").child(userId);
@@ -63,7 +63,7 @@ const FirebaseCrud = () => {
         setUfname('')
         setUlname('')
     };
-
+    //Update FName and LName
     const handleUpdateClick = (data) => {
         setUfname(data.firstName)
         setUlname(data.lastName)
@@ -71,7 +71,7 @@ const FirebaseCrud = () => {
         // alert("clicked" + data.id)
 
     };
-
+    //DeleteFunction - D
     const handleDelete = (id) => {
         const firestore = firebase.database().ref("/userInfo").child(id);
         firestore.remove();
@@ -140,7 +140,7 @@ const FirebaseCrud = () => {
                             userData === 0 ?
                                 <Segment padded="very">
                                     <Header textAlign="center">
-                                        Oops There is no data here.. Please enter some data
+                                        Oops There is no data here.. Please add some data
                                     </Header>
                                 </Segment> :
                                 <Segment padded="very">
