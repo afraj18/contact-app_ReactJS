@@ -55,13 +55,19 @@ const FirebaseCrud = () => {
     // Update Details on FireDB - U
     const handleUpdateUser = () => {
         // alert("function not finalized  ")
-        const firestore = firebase.database().ref("/userInfo").child(userId);
-        firestore.update({
-            firstName: ufname,
-            lastName: ulname
-        })
-        setUfname('')
-        setUlname('')
+        if (userId !== "") {
+            const firestore = firebase.database().ref("/userInfo").child(userId);
+            firestore.update({
+                firstName: ufname,
+                lastName: ulname
+            })
+            setUfname('')
+            setUlname('')
+            setUserId('')
+        }
+        else {
+            alert("Please select the name to update")
+        }
     };
     //Update FName and LName
     const handleUpdateClick = (data) => {
