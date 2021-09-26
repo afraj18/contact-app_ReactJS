@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import firebase from "./firebase"
-// import { database } from './firebase';
+import { database } from './firebase';
 // import database from './fireDB';
 import { Button, Container, Form, Grid, Input, Label, Segment, Table, Header, Icon } from "semantic-ui-react";
 
@@ -10,7 +10,8 @@ const FirebaseCrud = () => {
     const [fname, setFname] = useState("");
     const [lname, setLname] = useState("");
     const [ufname, setUfname] = useState("");
-    const [ulname, setUlname] = useState("")
+    const [ulname, setUlname] = useState("");
+    const [userId, setUserId] = useState('');
     const [userData, setUserData] = useState([]);
 
     useEffect(() => {
@@ -38,7 +39,7 @@ const FirebaseCrud = () => {
         }
         if (fname !== "" && lname !== "") {
             if (firestore.push(data)) {
-                alert(fname + " " + lname + "is saved successfully")
+                // alert(fname + " " + lname + " is saved successfully")
                 setFname('')
                 setLname('')
             }
@@ -53,6 +54,14 @@ const FirebaseCrud = () => {
     }
 
     const handleUpdateUser = () => {
+        alert("function not finalized ")
+    };
+
+    const handleUpdateClick = (data) => {
+        setUfname(data.firstName)
+        setUlname(data.lastName)
+        setUserId(data.id)
+        // alert("clicked")
 
     };
 
@@ -72,7 +81,9 @@ const FirebaseCrud = () => {
                                     <Input size='large' type="text" placeholder="Last Name" focus value={lname} onChange={(e) => { setLname(e.target.value) }} />
                                 </Form.Field>
                                 <Form.Field>
-                                    <Button onClick={handleUser} primary>Add User </Button>
+                                    <Button onClick={handleUser} primary>
+                                        <Icon name="add circle"></Icon>
+                                        Add User </Button>
                                 </Form.Field>
                             </Form>
                         </Segment>
@@ -102,7 +113,7 @@ const FirebaseCrud = () => {
                                 <Form.Field>
                                     <Button
                                         onClick={handleUpdateUser}
-                                        positive><Icon name="edit"></Icon>Update User
+                                        positive><Icon name="edit "></Icon>Update User
 
                                     </Button>
 
@@ -138,7 +149,7 @@ const FirebaseCrud = () => {
                                                             {data.lastName}
                                                         </Table.Cell>
                                                         <Table.Cell>
-                                                            <Button primary>
+                                                            <Button primary onClick={() => { handleUpdateClick(data) }}>
                                                                 <Icon name="edit" />
                                                                 Update</Button>
                                                             <Button color="red">
