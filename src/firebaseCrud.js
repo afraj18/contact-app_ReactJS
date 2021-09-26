@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import firebase from "./firebase"
-import { database } from './firebase';
+// import { database } from './firebase';
 // import database from './fireDB';
 import { Button, Container, Form, Grid, Input, Label, Segment, Table, Header, Icon } from "semantic-ui-react";
 
@@ -54,16 +54,28 @@ const FirebaseCrud = () => {
     }
 
     const handleUpdateUser = () => {
-        alert("function not finalized ")
+        // alert("function not finalized ")
+        const firestore = firebase.database().ref("/userInfo").child(userId);
+        firestore.update({
+            firstName: ufname,
+            lastName: ulname
+        })
+        setUfname('')
+        setUlname('')
     };
 
     const handleUpdateClick = (data) => {
         setUfname(data.firstName)
         setUlname(data.lastName)
         setUserId(data.id)
-        // alert("clicked")
+        // alert("clicked" + data.id)
 
     };
+
+    const handleDelete = (id) => {
+        const firestore = firebase.database().ref("/userInfo").child(id);
+        firestore.remove();
+    }
 
     return <div className="ui hidden divider " style={{ minHeight: "0vh" }}>
         <Container >
@@ -152,7 +164,7 @@ const FirebaseCrud = () => {
                                                             <Button primary onClick={() => { handleUpdateClick(data) }}>
                                                                 <Icon name="edit" />
                                                                 Update</Button>
-                                                            <Button color="red">
+                                                            <Button color="red" onClick={() => { handleDelete(data.id) }}>
                                                                 <Icon name="trash" />
                                                                 Delete</Button>
                                                         </Table.Cell>
