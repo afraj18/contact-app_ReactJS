@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from "react";
 import firebase from "./firebase"
-import { database } from './firebase';
+// import { database } from './firebase';
 // import database from './fireDB';
-import { Button, Container, Form, Grid, Input, Label, Segment, Table, Header, Tab, Icon } from "semantic-ui-react";
+import { Button, Container, Form, Grid, Input, Label, Segment, Table, Header, Icon } from "semantic-ui-react";
 
 
 const FirebaseCrud = () => {
 
     const [fname, setFname] = useState("");
     const [lname, setLname] = useState("");
+    const [ufname, setUfname] = useState("");
+    const [ulname, setUlname] = useState("")
     const [userData, setUserData] = useState([]);
 
     useEffect(() => {
@@ -50,7 +52,11 @@ const FirebaseCrud = () => {
 
     }
 
-    return <div className="ui hidden divider">
+    const handleUpdateUser = () => {
+
+    };
+
+    return <div className="ui hidden divider " style={{ minHeight: "0vh" }}>
         <Container >
             <Grid>
                 <Grid.Row columns="2">
@@ -71,7 +77,39 @@ const FirebaseCrud = () => {
                             </Form>
                         </Segment>
                     </Grid.Column>
-                    <Grid.Column>Edit User </Grid.Column>
+                    <Grid.Column>
+                        <Segment>
+                            <Form>
+                                <Form.Field>
+                                    <Label className=""> First Name  :  </Label>
+                                    <Input size='large'
+                                        type="text"
+                                        placeholder="First Name"
+                                        value={ufname}
+                                        onChange={(e) => { setUfname(e.target.value) }} focus />
+                                </Form.Field>
+                                <Form.Field>
+                                    <Label className="mb-1">
+                                        Last Name  :
+                                    </Label>
+                                    <Input
+                                        size='large'
+                                        type="text"
+                                        placeholder="Last Name"
+                                        focus value={ulname}
+                                        onChange={(e) => { setUlname(e.target.value) }} />
+                                </Form.Field>
+                                <Form.Field>
+                                    <Button
+                                        onClick={handleUpdateUser}
+                                        positive><Icon name="edit"></Icon>Update User
+
+                                    </Button>
+
+                                </Form.Field>
+                            </Form>
+                        </Segment>
+                    </Grid.Column>
                 </Grid.Row>
                 <Grid.Row columns="1">
                     <Grid.Column>

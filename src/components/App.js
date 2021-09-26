@@ -15,7 +15,7 @@ import firebaseCrud from '../firebaseCrud';
 function App() {
     return (
 
-        <Container className="d-flex justify-content-center align-items-center" style={{ minHeight: "50vh" }} >
+        <Container className="d-flex justify-content-center align-items-center" style={{ minHeight: "75vh" }} >
             {/* <div className="w-100" style={{ maxWidth: "400px" }}> */}
             <Router>
                 <AuthProvider>
