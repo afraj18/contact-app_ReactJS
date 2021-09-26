@@ -54,7 +54,7 @@ const FirebaseCrud = () => {
     }
 
     const handleUpdateUser = () => {
-        // alert("function not finalized ")
+        // alert("function not finalized  ")
         const firestore = firebase.database().ref("/userInfo").child(userId);
         firestore.update({
             firstName: ufname,
